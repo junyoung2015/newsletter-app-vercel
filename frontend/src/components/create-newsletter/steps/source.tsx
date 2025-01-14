@@ -29,7 +29,7 @@ const NewsletterSource: React.FC<NewsletterSourceProps> = () => {
   }
 
   return (
-    <div className="container mx-auto flex max-w-7xl flex-grow flex-col gap-4">
+    <div className="container flex max-w-7xl flex-grow flex-col gap-4">
       <div className="mb-2 flex gap-2">
         {sources.map((source, index) => (
           <Chip key={index} variant="flat" onClose={() => handleClose(source)}>

@@ -64,7 +64,7 @@ const NewsletterDetail: React.FC<NewsletterDetailProps> = () => {
   }, [exampleId, setExampleTitle, setExampleContent]);
 
   return (
-    <div className="container mx-auto mt-4 flex max-w-7xl flex-col">
+    <div className="container mt-4 flex h-full max-w-7xl flex-col">
       <Tabs aria-label="Newsletter Detail">
         <Tab key="Newsletter-detail" title="Detail">
           <h1 className={title({ size: "xs", fullWidth: true })}>
@@ -102,11 +102,11 @@ const NewsletterDetail: React.FC<NewsletterDetailProps> = () => {
             </Table>
           </div>
         </Tab>
-        <Tab key="Newsletter-example" title="Example">
+        <Tab key="Newsletter-example" title="Example" className="h-full">
           <h1 className={title({ size: "xs", fullWidth: true })}>
             Example Newsletter
           </h1>
-          <div className="mt-4 flex justify-center">
+          <div className="mt-4 flex h-full justify-center">
             {exampleTitle ? (
               <Card classNames={{ base: "w-full" }}>
                 <CardHeader>

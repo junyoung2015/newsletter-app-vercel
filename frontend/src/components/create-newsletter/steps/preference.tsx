@@ -44,7 +44,7 @@ const NewsletterPreference: React.FC<NewsletterPreferenceProps> = () => {
     setFrequency(frequency);
   };
   return (
-    <div className="mx-auto flex max-w-7xl flex-grow flex-col gap-4">
+    <div className="flex max-w-7xl flex-grow flex-col gap-4">
       <Input
         className="max-w-xs"
         label="Name"
