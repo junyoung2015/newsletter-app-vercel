@@ -1,0 +1,66 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: newsletter_backend
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_PORT: ${DATABASE_PORT}
+      JWT_SECRET: ${JWT_SECRET}
+    depends_on:
+      - db
+      - redis
+    env_file:
+      - backend/.env
+    networks:
+      - newsletter_network
+  db:
+    image: mysql:8.0
+    container_name: mysql_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_DATABASE: newsletter_schema
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./my.cnf:/etc/my.cnf
+    env_file:
+      - backend/.env
+    networks:
+      - newsletter_network
+
+  redis:
+    container_name: redis
+    image: redis:7.4.2
+    ports:
+      - "6379:6379"
+    networks:
+      - newsletter_network
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    container_name: newsletter_worker
+    restart: always
+    depends_on:
+      - backend
+      - redis
+    networks:
+      - newsletter_network
+    env_file:
+      - backend/.env
+
+volumes:
+  db_data:
+
+networks:
+  newsletter_network:
+    driver: bridge
