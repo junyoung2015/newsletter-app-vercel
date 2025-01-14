@@ -122,7 +122,7 @@ export default function useDebouncedCallback<
   const timerId = useRef<number | null>(null);
   const lastArgs = useRef<unknown[] | null>([]);
   const lastThis = useRef<unknown | null>(null);
-  const result = useRef<ReturnType<T>>();
+  const result = useRef<ReturnType<T> | undefined>(undefined);
   const funcRef = useRef(func);
   const mounted = useRef(true);
   // Always keep the latest version of debounce callback, with no wait time.
