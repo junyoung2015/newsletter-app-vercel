@@ -26,7 +26,10 @@ export async function saveNewsletter({
     return;
   }
 
-  const url = new URL("/api/news/save", "http://localhost:8000");
+  const url = new URL(
+    "/api/news/save",
+    process.env.NEXT_PUBLIC_BACKEND_API_URL,
+  );
 
   try {
     const res = await fetch(url.toString(), {
@@ -65,7 +68,10 @@ export async function createSampleNewsletter(
     return null;
   }
 
-  const url = new URL("/api/news/task", "http://localhost:8000");
+  const url = new URL(
+    "/api/news/task",
+    process.env.NEXT_PUBLIC_BACKEND_API_URL,
+  );
 
   try {
     const res = await fetch(url.toString(), {
@@ -98,7 +104,10 @@ export async function getSampleNewsletter(taskId: string) {
     return null;
   }
 
-  const url = new URL(`/api/news/example/${taskId}`, "http://localhost:8000");
+  const url = new URL(
+    `/api/news/example/${taskId}`,
+    process.env.NEXT_PUBLIC_BACKEND_API_URL,
+  );
 
   try {
     const res = await fetch(url.toString(), {

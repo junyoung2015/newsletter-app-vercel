@@ -19,7 +19,10 @@ const LoginTabs: React.FC<LoginTabsProps> = () => {
       return;
     }
 
-    const url = new URL("/api/user/login", "http://localhost:8000");
+    const url = new URL(
+      "/api/user/login",
+      process.env.NEXT_PUBLIC_BACKEND_API_URL,
+    );
     let loginData = new URLSearchParams();
     loginData.append("username", email);
     loginData.append("password", password);
@@ -61,7 +64,10 @@ const LoginTabs: React.FC<LoginTabsProps> = () => {
       return;
     }
 
-    const url = new URL("/api/user/register", "http://localhost:8000");
+    const url = new URL(
+      "/api/user/register",
+      process.env.NEXT_PUBLIC_BACKEND_API_URL,
+    );
     try {
       const response: Response = await fetch(url.toString(), {
         method: "POST",

@@ -12,7 +12,10 @@ export async function fetchUserProfile(): Promise<MyNewsDto[]> {
     return [];
   }
 
-  const url = new URL("/api/user/news", "http://localhost:8000");
+  const url = new URL(
+    "/api/user/news",
+    process.env.NEXT_PUBLIC_BACKEND_API_URL,
+  );
 
   try {
     const res = await fetch(url.toString(), {
